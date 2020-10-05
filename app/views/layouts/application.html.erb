@@ -38,11 +38,23 @@
       <div class="navbar-end">
         <div class="field is-grouped">
          <p class="control">
-          <%= link_to 'New Tweet', new_tweeet_path, class: "button is-info is-inverted mt-2 mr-2" %>
+          <%= link_to 'New Tweet', root_path, class: "button is-info is-inverted mt-2 mr-2" %>
          </p>
+            <% if user_signed_in? %>
+              <p class="control">
+                <%= link_to current_user.name, edit_user_registration_path, class: "button is-info mt-2 mr-2" %>
+              </p>
+              <p>
+                <%= link_to "Log out", destroy_user_session_path, method: :delete, class: "button is-info mt-2 mr-2" %>
+              </p>
+            <% else %>
 						<p class="control">
-              <%= link_to 'Sign Up', new_tweeet_path, class: "button is-info my-2 mr-2" %>
+              <%= link_to 'Sign Up', new_user_registration_path, class: "button is-info is-inverted my-2 mr-2" %>
             </p>
+            <p class="control">
+              <%= link_to 'Sign In', new_user_session_path, class: "button is-info is-inverted my-2 mr-2" %>
+            </p>
+            <% end %>
         </div>
       </div>
     
